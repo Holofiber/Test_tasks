@@ -12,19 +12,16 @@ namespace Test_task004
         {
             int a;
              a = Convert.ToInt16(Console.ReadLine());
-            if (a >= 1 && a < 100000)
-            {
-                if (a % 2 != 0) ;
 
-                Console.WriteLine("Washinghton");
-            }
-
+            if (a>1 && a<100000)
+                if (a%2!=0)
+                {
+                    Console.WriteLine("Hollywood");
+                }
             else
-            {
-                Console.WriteLine("Hollywood");
-            }
-            
-            
+                {
+                    Console.WriteLine("Washington");
+                }
             Console.ReadKey();
         }
     }
