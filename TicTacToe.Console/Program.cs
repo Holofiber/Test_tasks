@@ -39,47 +39,77 @@ namespace TicTacToe.Console
         {
             while (true)
             {
-                //Set player name
-                if (Player == true)
-                    PlayerName = "X";
-                else
-                {
-                    PlayerName = "O";
-                }
+
+                SetPlayerName();
+
+                PrintBoard();
 
 
-                //Print board
-                System.Console.WriteLine("Tic Tac Toe board");
+                int x1;
+                int x2;
+                ProcessPlayerTurn(out x1, out x2);
 
 
-                for (int i = 0; i < 3; i++)
-                {
-                    System.Console.WriteLine();
-                    for (int j = 0; j < 3; j++)
-                        System.Console.Write(ticTac[i, j] + "\t");
-                }
+                WritePlayerTutnInBoard(x1, x2);
 
+
+                ClearScreen();
+
+
+                ChangePlayerTurn();
+            }
+            // ReSharper disable once FunctionNeverReturns
+        }
+
+        private static void ChangePlayerTurn()
+        {
+            Player = !Player;
+        }
+
+        private static void ClearScreen()
+        {
+            System.Console.Clear();
+        }
+
+        private static void WritePlayerTutnInBoard(int x1, int x2)
+        {
+            ticTac[x1, x2] = PlayerName;
+        }
+
+        private static void ProcessPlayerTurn(out int x1, out int x2)
+        {
+            System.Console.WriteLine(PlayerName + "turn : ");
+            string s1 = System.Console.ReadLine();
+            x1 = Convert.ToInt32(s1);
+
+
+            var s2 = System.Console.ReadLine();
+            x2 = Convert.ToInt32(s2);
+        }
+
+        private static void PrintBoard()
+        {
+            System.Console.WriteLine("Tic Tac Toe board");
+
+
+            for (int i = 0; i < 3; i++)
+            {
                 System.Console.WriteLine();
-                System.Console.WriteLine();
+                for (int j = 0; j < 3; j++)
+                    System.Console.Write(ticTac[i, j] + "\t");
+            }
 
+            System.Console.WriteLine();
+            System.Console.WriteLine();
+        }
 
-                //process player turn
-                System.Console.WriteLine(PlayerName + "turn : ");
-                string s1 = System.Console.ReadLine();
-                int x1 = Convert.ToInt32(s1);
-
-
-                var s2 = System.Console.ReadLine();
-                int x2 = Convert.ToInt32(s2);
-
-                //Write plaer turn in board
-                ticTac[x1, x2] = PlayerName;
-
-                //Clear screen
-                System.Console.Clear();
-
-                //change plaers turn
-                Player = !Player;
+        private static void SetPlayerName()
+        {
+            if (Player == true)
+                PlayerName = "X";
+            else
+            {
+                PlayerName = "O";
             }
         }
 
