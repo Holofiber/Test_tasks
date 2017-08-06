@@ -10,31 +10,35 @@ using System.Windows.Forms;
 
 namespace WinForm001
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-         bool turn = true;
-         int turn_count = 0;
-        public Form1()
+        private bool turn = true;
+        private int turnCount = 0;
+
+        public MainForm()
         {
             InitializeComponent();
         }
 
         private void вихідToolStripMenuItem_Click(object sender, EventArgs e)
         {
-Application.Exit();
+            Application.Exit();
         }
 
         private void button_click(object sender, EventArgs e)
         {
-            Button b = (Button) sender;
+            Button b = (Button)sender;
+
             if (turn)
                 b.Text = "X";
             else
                 b.Text = "O";
+
             turn = !turn;
             b.Enabled = false;
-            turn_count++;
-            checkWin();
+            turnCount++;
+
+            CheckWin();
         }
 
         private void інформаціяПроГруToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,34 +46,35 @@ Application.Exit();
             MessageBox.Show("Гра хрестики нулики.\r\nProts.corp", "Інформація про гру");
         }
 
-        private void checkWin()
+        private void CheckWin()
         {
-            bool there_is_aWiner = false;
+            bool thereIsAWiner = false;
             //horizontal
             if ((A1.Text == A2.Text) && (A2.Text == A3.Text) && (!A1.Enabled))
-                there_is_aWiner = true;
-           else if ((B1.Text == B2.Text) && (B2.Text == B3.Text) && (!B1.Enabled))
-                there_is_aWiner = true;
-           else if ((C1.Text == C2.Text) && (C2.Text == C3.Text) && (!C1.Enabled))
-                there_is_aWiner = true;
+                thereIsAWiner = true;
+            else if ((B1.Text == B2.Text) && (B2.Text == B3.Text) && (!B1.Enabled))
+                thereIsAWiner = true;
+            else if ((C1.Text == C2.Text) && (C2.Text == C3.Text) && (!C1.Enabled))
+                thereIsAWiner = true;
             //vertical
             else if ((A2.Text == B2.Text) && (B2.Text == C2.Text) && (!A2.Enabled))
-                there_is_aWiner = true;
+                thereIsAWiner = true;
             else if ((A3.Text == B3.Text) && (B3.Text == C3.Text) && (!A3.Enabled))
-                there_is_aWiner = true;
+                thereIsAWiner = true;
             else if ((A1.Text == B1.Text) && (B1.Text == C1.Text) && (!B1.Enabled))
-                there_is_aWiner = true;
+                thereIsAWiner = true;
             //DIAGONAL
             else if ((A3.Text == B2.Text) && (B2.Text == C1.Text) && (!C1.Enabled))
-                there_is_aWiner = true;
+                thereIsAWiner = true;
             else if ((A1.Text == B2.Text) && (B2.Text == C3.Text) && (!A1.Enabled))
-                there_is_aWiner = true;
-            
+                thereIsAWiner = true;
 
-            if (there_is_aWiner)
+
+            if (thereIsAWiner)
             {
-                disableButtons();
+                DisableButtons();
                 String winner = "";
+
                 if (turn)
                     winner = "O";
                 else
@@ -79,29 +84,29 @@ Application.Exit();
             }
             else
             {
-                if (turn_count == 9)
+                if (turnCount == 9)
                     MessageBox.Show("Нічія", "Упс!");
             }
         }
 
-        private void disableButtons()
+        private void DisableButtons()
         {
             try
             {
 
                 foreach (Control c in Controls)
                 {
-                    Button b = (Button) c;
+                    Button b = (Button)c;
                     b.Enabled = false;
                 }
             }
-            catch{}
+            catch { }
         }
 
-        private void новаГраToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             turn = true;
-            turn_count = 0;
+            turnCount = 0;
 
             try
             {
@@ -115,6 +120,32 @@ Application.Exit();
             }
             catch { }
         }
+
+        private void button_enter(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            if (b.Enabled)
+            {
+                if (turn)
+                    b.Text = "X";
+                else
+                    b.Text = "O";
+            }
+        }
+
+        private void button_leave(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            if (b.Enabled)
+            {
+                b.Text = "";
+            }
+        }
+
+        private void button_paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
-    
+
 }
