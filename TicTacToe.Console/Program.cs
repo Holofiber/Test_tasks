@@ -33,6 +33,8 @@ namespace TicTacToe.Console
 
             System.Console.ReadLine();
 
+            
+
         }
 
         private static void GameLoop()
@@ -50,15 +52,22 @@ namespace TicTacToe.Console
                 ProcessPlayerTurn(out x1, out x2);
 
 
-                WritePlayerTutnInBoard(x1, x2);
+                try
+                {
+                    WritePlayerTutnInBoard(x1, x2);
 
 
+                    
+
+
+                    ChangePlayerTurn();
+                }
+                catch (Exception e)
+                {
+                }
                 ClearScreen();
-
-
-                ChangePlayerTurn();
             }
-            // ReSharper disable once FunctionNeverReturns
+            
         }
 
         private static void ChangePlayerTurn()
@@ -73,29 +82,43 @@ namespace TicTacToe.Console
 
         private static void WritePlayerTutnInBoard(int x1, int x2)
         {
-            ticTac[x1, x2] = PlayerName;
+
+
+           
+           if(x1<3 && x2<3)
+           ticTac[x1, x2] = PlayerName;
+           else
+           {
+               throw new Exception("Invalid Input data");
+           }
+            
+            
+
         }
 
         private static void ProcessPlayerTurn(out int x1, out int x2)
         {
-            System.Console.WriteLine(PlayerName + "turn : ");
+            System.Console.WriteLine(PlayerName + " turn : ");
             string s1 = System.Console.ReadLine();
-            x1 = Convert.ToInt32(s1);
-
-
+            
+           x1 = Convert.ToInt32(s1)  ;
+           
             var s2 = System.Console.ReadLine();
             x2 = Convert.ToInt32(s2);
+
+            
+
         }
 
         private static void PrintBoard()
         {
             System.Console.WriteLine("Tic Tac Toe board");
 
-
+          
             for (int i = 0; i < 3; i++)
             {
                 System.Console.WriteLine();
-                for (int j = 0; j < 3; j++)
+            for (int j = 0; j < 3; j++)
                     System.Console.Write(ticTac[i, j] + "\t");
             }
 
