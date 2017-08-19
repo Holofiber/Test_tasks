@@ -33,7 +33,7 @@ namespace TicTacToe.Console
 
             System.Console.ReadLine();
 
-            
+
 
         }
 
@@ -46,6 +46,8 @@ namespace TicTacToe.Console
 
                 PrintBoard();
 
+                
+
 
                 int x1;
                 int x2;
@@ -57,7 +59,7 @@ namespace TicTacToe.Console
                     WritePlayerTutnInBoard(x1, x2);
 
 
-                    
+                    CheckWin();
 
 
                     ChangePlayerTurn();
@@ -65,9 +67,10 @@ namespace TicTacToe.Console
                 catch (Exception e)
                 {
                 }
+
                 ClearScreen();
             }
-            
+
         }
 
         private static void ChangePlayerTurn()
@@ -84,15 +87,15 @@ namespace TicTacToe.Console
         {
 
 
-           
-           if(x1<3 && x2<3)
-           ticTac[x1, x2] = PlayerName;
-           else
-           {
-               throw new Exception("Invalid Input data");
-           }
-            
-            
+
+            if (x1 < 3 && x2 < 3)
+                ticTac[x1, x2] = PlayerName;
+            else
+            {
+                throw new Exception("Invalid Input data");
+            }
+
+
 
         }
 
@@ -100,13 +103,13 @@ namespace TicTacToe.Console
         {
             System.Console.WriteLine(PlayerName + " turn : ");
             string s1 = System.Console.ReadLine();
-            
-           x1 = Convert.ToInt32(s1)  ;
-           
+
+            x1 = Convert.ToInt32(s1);
+
             var s2 = System.Console.ReadLine();
             x2 = Convert.ToInt32(s2);
 
-            
+
 
         }
 
@@ -114,11 +117,11 @@ namespace TicTacToe.Console
         {
             System.Console.WriteLine("Tic Tac Toe board");
 
-          
+
             for (int i = 0; i < 3; i++)
             {
                 System.Console.WriteLine();
-            for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 3; j++)
                     System.Console.Write(ticTac[i, j] + "\t");
             }
 
@@ -154,9 +157,74 @@ namespace TicTacToe.Console
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
+
                     ticTac[i, j] = "*";
             }
         }
-    }
+        private static void CheckWin()
+        {
+            
+            {
+                bool CheckWinner = false;
 
+                //Horiz
+                if (ticTac[1, 0] != "*")
+                {
+                    if ((ticTac[0, 0] == ticTac[0, 1]) && (ticTac[0, 1] == ticTac[0, 2]))
+                        CheckWinner = (true);
+                }
+
+                else if (ticTac[1, 0] != "*")
+                {
+                    if ((ticTac[1, 0] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[1, 2]))
+                        CheckWinner = (true);
+                }
+                else if (ticTac[2, 0] != "*")
+                {
+                    if ((ticTac[2, 0] == ticTac[2, 1]) && (ticTac[2, 1] == ticTac[2, 2]))
+                        CheckWinner = (true);
+                }
+
+                //vertical
+                if (ticTac[0, 0] != "*")
+                {
+                    if ((ticTac[0, 0] == ticTac[1, 0]) && (ticTac[1, 0] == ticTac[2, 0]))
+                        CheckWinner = (true);
+                }
+
+                else if (ticTac[1, 1] != "*")
+                {
+                    if ((ticTac[0, 1] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[2, 1]))
+                        CheckWinner = (true);
+                }
+                else if (ticTac[1, 2] != "*")
+                {
+                    if ((ticTac[0, 2] == ticTac[1, 2]) && (ticTac[1, 2] == ticTac[2, 2]))
+                        CheckWinner = (true);
+                }
+                //diagonal
+                if (ticTac[0, 0] != "*")
+                {
+                    if ((ticTac[0, 0] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[2, 2]))
+                        CheckWinner = (true);
+                }
+
+                else if (ticTac[1, 1] != "*")
+                {
+                    if ((ticTac[0, 2] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[2, 0]))
+                        CheckWinner = (true);
+                }
+
+                if (CheckWinner)
+                {
+
+                    System.Console.WriteLine($"{PlayerName} win!");
+                    System.Console.ReadLine();
+                    
+
+                }
+            }
+        }
+    }
 }
+
