@@ -9,10 +9,10 @@ namespace TicTacToe.Console
 
     public class Player
     {
-        public String Name { get; set; }
+        public string Name { get; set; }
 
 
-        
+
         private bool playerSide;
 
         private bool PlayerSide
@@ -40,7 +40,6 @@ namespace TicTacToe.Console
                 Name = "O";
             }
         }
-        
 
         public void ChangePlayerTurn()
         {

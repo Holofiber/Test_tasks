@@ -10,12 +10,11 @@ namespace TicTacToe.Console
 {
     class Program
     {
+        private static readonly GameBoard GameBoard = new GameBoard();
+        private static readonly Player Player = new Player();
 
-        static GameBoard gameBoard = new GameBoard();
-        static Player player = new Player();
-        static PlayerTurn playerTurn = new PlayerTurn();
-        
-        
+
+
         static void Main(string[] args)
         {
             GameLoop();
@@ -28,32 +27,23 @@ namespace TicTacToe.Console
         {
             while (true)
             {
-
-                
-
-               gameBoard.PrintBoard();
-
-                
-
-
-                PlayerTurn turn = ProcessPlayerTurn();
-
-
                 try
                 {
-                    gameBoard.WritePlayerTutnInBoard(player, turn);
+                    GameBoard.PrintBoard();
 
+                    PlayerTurn turn = ProcessPlayerTurn();
 
-                    var checkWin = gameBoard.CheckWin();
+                    GameBoard.WritePlayerTutnInBoard(Player, turn);
+
+                    var checkWin = GameBoard.CheckWin();
                     if (checkWin)
                     {
 
-                        System.Console.WriteLine($"{player.Name} win!");
+                        System.Console.WriteLine($"{Player.Name} win!");
                         break;
                     }
-
-
-                    player.ChangePlayerTurn();
+                    //draw
+                    Player.ChangePlayerTurn();
                 }
                 catch (Exception e)
                 {
@@ -65,43 +55,28 @@ namespace TicTacToe.Console
 
         }
 
-        
-
         private static void ClearScreen()
         {
             System.Console.Clear();
         }
 
-
-
-
         public static PlayerTurn ProcessPlayerTurn()
         {
-            System.Console.WriteLine(player.Name + " turn : ");
+            System.Console.WriteLine(Player.Name + " turn : ");
             string s1 = System.Console.ReadLine();
 
             int x1 = Convert.ToInt32(s1);
 
             var s2 = System.Console.ReadLine();
-           int x2 = Convert.ToInt32(s2);
+            int x2 = Convert.ToInt32(s2);
 
-            PlayerTurn turn = new PlayerTurn();
-            turn.X = x1;
-            turn.Y = x2;
+            PlayerTurn turn = new PlayerTurn
+            {
+                X = x1,
+                Y = x2
+            };
             return turn;
-
-
-
         }
-
-
-
-
-
-
-
-
-
 
     }
 }

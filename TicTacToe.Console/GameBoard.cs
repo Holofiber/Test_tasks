@@ -8,15 +8,15 @@ namespace TicTacToe.Console
 {
     public class GameBoard
     {
-         String[,] ticTac;
+        private readonly string[,] ticTac;
 
         public GameBoard()
         {
             ticTac = new string[3, 3];
             ClearGameBoard();
         }
-        
-      
+
+
 
         public void ClearGameBoard()
         {
@@ -28,7 +28,7 @@ namespace TicTacToe.Console
             }
         }
 
-        public  void PrintBoard()
+        public void PrintBoard()
         {
             System.Console.WriteLine("Tic Tac Toe board");
 
@@ -44,74 +44,66 @@ namespace TicTacToe.Console
             System.Console.WriteLine();
         }
 
-        public  void WritePlayerTutnInBoard(Player player, PlayerTurn turn)
+        public void WritePlayerTutnInBoard(Player player, PlayerTurn turn)
         {
-
-
-
-
             ticTac[turn.X, turn.Y] = player.Name;
-           
-
-
-
         }
 
         public bool CheckWin()
         {
 
             {
-                bool CheckWinner = false;
+                var checkWinner = false;
 
                 //Horiz
                 if (ticTac[1, 0] != "*")
                 {
                     if ((ticTac[0, 0] == ticTac[0, 1]) && (ticTac[0, 1] == ticTac[0, 2]))
-                        CheckWinner = (true);
+                        checkWinner = (true);
                 }
 
                 else if (ticTac[1, 0] != "*")
                 {
                     if ((ticTac[1, 0] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[1, 2]))
-                        CheckWinner = (true);
+                        checkWinner = (true);
                 }
                 else if (ticTac[2, 0] != "*")
                 {
                     if ((ticTac[2, 0] == ticTac[2, 1]) && (ticTac[2, 1] == ticTac[2, 2]))
-                        CheckWinner = (true);
+                        checkWinner = (true);
                 }
 
                 //vertical
                 if (ticTac[0, 0] != "*")
                 {
                     if ((ticTac[0, 0] == ticTac[1, 0]) && (ticTac[1, 0] == ticTac[2, 0]))
-                        CheckWinner = (true);
+                        checkWinner = (true);
                 }
 
                 else if (ticTac[1, 1] != "*")
                 {
                     if ((ticTac[0, 1] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[2, 1]))
-                        CheckWinner = (true);
+                        checkWinner = (true);
                 }
                 else if (ticTac[1, 2] != "*")
                 {
                     if ((ticTac[0, 2] == ticTac[1, 2]) && (ticTac[1, 2] == ticTac[2, 2]))
-                        CheckWinner = (true);
+                        checkWinner = (true);
                 }
                 //diagonal
                 if (ticTac[0, 0] != "*")
                 {
                     if ((ticTac[0, 0] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[2, 2]))
-                        CheckWinner = (true);
+                        checkWinner = (true);
                 }
 
                 else if (ticTac[1, 1] != "*")
                 {
                     if ((ticTac[0, 2] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[2, 0]))
-                        CheckWinner = (true);
+                        checkWinner = (true);
                 }
-                return CheckWinner;
-              
+                return checkWinner;
+
             }
         }
     }
