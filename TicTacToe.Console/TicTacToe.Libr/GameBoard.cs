@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TicTacToe.Console
+namespace TicTacToe.Libr
 {
     public class GameBoard
     {
         private readonly string[,] ticTac;
 
+        public string[,] TicTacData
+        {
+          get { return ticTac; }
+        }
         public GameBoard()
         {
             ticTac = new string[3, 3];
+
             ClearGameBoard();
         }
 
@@ -106,5 +107,7 @@ namespace TicTacToe.Console
 
             }
         }
+
+       
     }
 }
