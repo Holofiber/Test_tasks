@@ -57,48 +57,48 @@ namespace TicTacToe.Libr
                 var checkWinner = false;
 
                 //Horiz
-                if (ticTac[1, 0] != "*")
+                if (ticTac[0, 0] == "X" || ticTac[0, 0] == "Y")
                 {
                     if ((ticTac[0, 0] == ticTac[0, 1]) && (ticTac[0, 1] == ticTac[0, 2]))
                         checkWinner = (true);
                 }
 
-                else if (ticTac[1, 0] != "*")
+                else if (ticTac[1, 0] == "X" || ticTac[1, 0] == "Y")
                 {
                     if ((ticTac[1, 0] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[1, 2]))
                         checkWinner = (true);
                 }
-                else if (ticTac[2, 0] != "*")
+                else if (ticTac[2, 0] == "X" || ticTac[2, 0] == "Y")
                 {
                     if ((ticTac[2, 0] == ticTac[2, 1]) && (ticTac[2, 1] == ticTac[2, 2]))
                         checkWinner = (true);
                 }
 
                 //vertical
-                if (ticTac[0, 0] != "*")
+                if (ticTac[0, 0] == "X" || ticTac[0, 0] == "Y")
                 {
                     if ((ticTac[0, 0] == ticTac[1, 0]) && (ticTac[1, 0] == ticTac[2, 0]))
                         checkWinner = (true);
                 }
 
-                else if (ticTac[1, 1] != "*")
+                else if (ticTac[1, 1] == "X" || ticTac[1, 1] == "Y")
                 {
                     if ((ticTac[0, 1] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[2, 1]))
                         checkWinner = (true);
                 }
-                else if (ticTac[1, 2] != "*")
+                else if (ticTac[1, 2] == "X" || ticTac[1, 2] == "Y")
                 {
                     if ((ticTac[0, 2] == ticTac[1, 2]) && (ticTac[1, 2] == ticTac[2, 2]))
                         checkWinner = (true);
                 }
                 //diagonal
-                if (ticTac[0, 0] != "*")
+                if (ticTac[0, 0] == "X" || ticTac[0, 0] == "Y")
                 {
                     if ((ticTac[0, 0] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[2, 2]))
                         checkWinner = (true);
                 }
 
-                else if (ticTac[1, 1] != "*")
+                else if (ticTac[1, 1] == "X" || ticTac[1, 1] == "Y")
                 {
                     if ((ticTac[0, 2] == ticTac[1, 1]) && (ticTac[1, 1] == ticTac[2, 0]))
                         checkWinner = (true);
