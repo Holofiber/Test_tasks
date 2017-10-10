@@ -25,7 +25,7 @@ namespace ConsoleApp1
             // 2) move number into range
             var i = n;
         
-                for ( ; n < 0 && n>10; n = n + 10; )
+                for ( ; n < 0 && n>10; n = n + 10 )
             {
                 Console.WriteLine("{0}", n);
             }

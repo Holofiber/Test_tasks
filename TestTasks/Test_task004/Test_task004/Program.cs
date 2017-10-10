@@ -12,7 +12,9 @@ namespace Test_task004
         {
             Console.WriteLine();
             ShowEnvironmentDetails();
-            Console.ReadLine;
+            Console.ReadLine();
+
+            return 0;
         }
         static void ShowEnvironmentDetails ()
         {
