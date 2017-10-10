@@ -27,7 +27,9 @@ namespace Test_task006
             else
             {
                 Console.WriteLine("Enter your number: from -999 to 999");
+                
             }
+            Console.Read();
         }
     }
 }

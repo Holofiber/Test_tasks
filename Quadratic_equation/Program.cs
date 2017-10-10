@@ -37,19 +37,19 @@ namespace Quadratic_equation
             {
                 var x1 = (-b + Math.Sqrt(d)) / (2 * a);
                 ;
-                Console.WriteLine($"x1={x1}");
+                Console.WriteLine($"x1={x1:F4}");
 
                 var x2 = ((-b) - (Math.Sqrt(d))) / (2 * a);
-                Console.WriteLine($"x2= {x2}");
+                Console.WriteLine($"x2= {x2:F4}");
 
                 var k = a * x1 * x1 + b * x1 + c;
-                Console.WriteLine("Перев1рка\na * x1 * x1 + b * x1 + c={0}", k);
+                Console.WriteLine("Перев1рка\na * x1 * x1 + b * x1 + c={0:F4}", k);
 
                 var k2 = a * x2 * x2 + b * x2 + c;
-                Console.WriteLine("a * x2 * x2 + b * x2 + c={0}", k2);
+                Console.WriteLine("a * x2 * x2 + b * x2 + c={0:F4}", k2);
             }
 
-            else if (d >= 0)
+            else if (Math.Abs(d - 3) < 0.0001)
             {
                 double x = -b / (2 * a);
                 Console.WriteLine("x={0}", x);
