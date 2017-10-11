@@ -8,14 +8,37 @@ namespace ConsoleApp2
 {
     class Program
     {
+
         static void Main(string[] args)
         {
+            var text = EnterInputText();
+            var separator = EnterSeparator();
+
+            List<string> wordsList = SeparateWords(text, separator);
+
+            PrintWords(wordsList);
+
+
+            Console.Read();
+        }
+
+
+        public static string EnterInputText()
+        {
             //string s = "Three Forex related values in the OrdType field were deprecated and replaced in FIX 4.3 by the combined use of specifying CURRENCY in the Product field and OrdType values. These deprecated OrdType values were removed in FIX 4.4. See the individual deprecated Forex values for their mappings: ForexMarket, ForexLimit and ForexPreviouslyQuoted";
+
             string text = "Three Forex related values";
-            char separator = ' ';
+            return text;
+        }
 
+        public static string EnterSeparator()
+        {
+            string separator = " ";
+            return separator;
+        }
 
-
+        public static List<string> SeparateWords(string text, string separator)
+        {
 
             List<string> wordsList = new List<string>();
 
@@ -29,17 +52,19 @@ namespace ConsoleApp2
                 string word;
                 int symbolsToRemove;
 
-                if (spaseIndex == -1)
-                {
-                    word = text;
-                    symbolsToRemove = text.Length;
-                }
-                else
+                bool isSpaceFound = spaseIndex >= 0;
+
+                if (isSpaceFound)
                 {
                     word = text.Substring(start, spaseIndex);
                     symbolsToRemove = spaseIndex + 1;
                 }
-                
+                else
+                {
+                    word = text;
+                    symbolsToRemove = text.Length;
+                }
+
                 text = text.Remove(start, symbolsToRemove);
 
 
@@ -47,19 +72,19 @@ namespace ConsoleApp2
 
             }
 
+            return wordsList;
+        }
 
+        public static void PrintWords(List<string> words)
+        {
+            words.Reverse();
 
-            // виводимо слова зі списку
-
-            foreach (var word in wordsList)
+            foreach (var word in words)
             {
                 Console.WriteLine(word);
             }
 
-
-            Console.Read();
         }
-
 
     }
 }
