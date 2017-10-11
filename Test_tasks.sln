@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "TestTasks\ConsoleApp1\ConsoleApp1\ConsoleApp1.csproj", "{5440DC11-8936-4100-832C-11D92DE87919}"
 EndProject
@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Separate_int_number", "Separate_int_number\Separate_int_number.csproj", "{CC5F2A29-CB9A-40E9-9402-4BBB0EE9723E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "Substring\ConsoleApp2.csproj", "{E26E9B28-FE3F-4C09-9B4A-1ECDF0CB77F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordsSplit", "Substring\WordsSplit.csproj", "{E26E9B28-FE3F-4C09-9B4A-1ECDF0CB77F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

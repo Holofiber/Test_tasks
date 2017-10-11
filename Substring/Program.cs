@@ -10,56 +10,48 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            string s = "Three Forex related values in the OrdType field were deprecated and replaced in FIX 4.3 by the combined use of specifying CURRENCY in the Product field and OrdType values. These deprecated OrdType values were removed in FIX 4.4. See the individual deprecated Forex values for their mappings: ForexMarket, ForexLimit and ForexPreviouslyQuoted";
-            char k = ' ';
+            //string s = "Three Forex related values in the OrdType field were deprecated and replaced in FIX 4.3 by the combined use of specifying CURRENCY in the Product field and OrdType values. These deprecated OrdType values were removed in FIX 4.4. See the individual deprecated Forex values for their mappings: ForexMarket, ForexLimit and ForexPreviouslyQuoted";
+            string s = "Three Forex related values";
+            char separator = ' ';
 
-            //Рахуємо кількісь пробілів
-            int numberOfSpase = s.Split(' ').Length;
-            int gf = s.Count((c) => c == ' ');
-          //початковий індекс
+
+
+
+            List<string> words = new List<string>();
+
+            //початковий індекс
             int start = 0;
 
-
-            //for (int i = 0; i < numberOfSpase-1; i++)
-            //{
-
-            //        //індекс завершення слова
-            //        int endIndex = s.IndexOf(k);
-
-            //        //додаємо в text значення яке ми знайшли
-            //        string text = s.Substring(start, endIndex);
-
-            //        //виводимо його на екран
-            //        Console.WriteLine(text);
-
-            //        //видаляємо додану частину з пошуку
-            //        s = s.Remove(start, endIndex + 1);
-
-
-
-            //}
-            //  Console.WriteLine(s);
-
-
-
-
-            
-
-            while (((s.IndexOf(k))> 0))
+            while (!string.IsNullOrWhiteSpace(s))
             {
-                int SpaseIndex = s.IndexOf(k);
-                string text = s.Substring(start, SpaseIndex);
-                Console.WriteLine(text);
-               s = s.Remove(start, SpaseIndex+1 );
+                int spaseIndex = s.IndexOf(separator);
+
+                if (spaseIndex == -1)
+                {
+                    words.Add(s);
+                    break;
+                }
+
+                string text = s.Substring(start, spaseIndex);
+
+                words.Add(text);
+
+                s = s.Remove(start, spaseIndex + 1);
             }
-            
-            
-            
+
+
+
+            // виводимо слова зі списку
+
+            foreach (var word in words)
+            {
+                Console.WriteLine(word);
+            }
 
 
             Console.Read();
         }
 
-        
+
     }
 }
