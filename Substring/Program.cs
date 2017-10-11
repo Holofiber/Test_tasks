@@ -27,17 +27,21 @@ namespace ConsoleApp2
                 int spaseIndex = text.IndexOf(separator);
 
                 string word;
+                int symbolsToRemove;
 
                 if (spaseIndex == -1)
                 {
                     word = text;
-                    text = string.Empty;
+                    symbolsToRemove = text.Length;
                 }
                 else
                 {
                     word = text.Substring(start, spaseIndex);
-                    text = text.Remove(start, spaseIndex + 1);
+                    symbolsToRemove = spaseIndex + 1;
                 }
+                
+                text = text.Remove(start, symbolsToRemove);
+
 
                 wordsList.Add(word);
 
