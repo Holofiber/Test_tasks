@@ -8,62 +8,141 @@ using System.Threading;
 
 namespace OperatorMenu
 {
-    public class Position 
-    {
-        public int currentPosition;
-    }
+
     class Program
     {
-        public int currentPosition=0;
+        public static int currentPosition=0;
 
         static void Main(string[] args)
-
-
         {
-
-            Console.WriteLine("Menu");
-            //List<string> mainMenu = new List<string>(new string[] { "1. Current tarif", "2. New tarif", "3. Connect to operator", "0. Exit" });
-            //List<string> currentTarif = new List<string>(new string[] { "1. Price", "2. Your Bonus", "3. Recomendation for you", "0. Back" });
-            //List<string> newTarif = new List<string>(new string[] { "1. Internet", "2. Calling", "3. Back" });
-            //List<string> newTrifInternet = new List<string>(new string[] { "1. Lite", "2. Standart", "3. Mega", "0. Back" });
-            //List<string> newTrifCalling = new List<string>(new string[] { "1. All", "0. Back" });
-            //List<string> connectToOperator = new List<string>(new string[] { "1. Connect to Operator", "0. Back" });
-
-            List<string> mainMenu = new List<string>(new string[] { "1. Current tarif  \n2. New tarif \n3. Connect to operator \n0. Exit",
-           "1. Price \n2. Your Bonus \n3. Recomendation for you \n0. Back", "1. Internet \n2. Calling \n0. Back", "1. Lite \n2. Standart \n3. Mega \n0. Back", "1. All \n0. Back", "1. Connect to Operator \n0. Back"  });
-
+            // initialize menus
+            Menu mainMenu = new Menu("Main menu");
+            Menu newTarif = new Menu("new Tarif");
+            Menu currentTarif = new Menu(" Current tarif");
+            Menu currentTarifPrice = new Menu("Count data");
+            Menu currentTarifCountData = new Menu("recomendation");
+            Menu currentTarifRecomendation = new Menu("Price your tarif");
+            Menu connectToOperator = new Menu("Connect to operator");
+            Menu newTarifInternet = new Menu("Internet tarifs");
+            Menu newTarifCalling = new Menu("Calling tarif");
 
 
+            mainMenu.MenuItems.Add(currentTarif);
+            mainMenu.MenuItems.Add(newTarif);
+            mainMenu.MenuItems.Add(connectToOperator);
+
+            currentTarif.MenuItems.Add(currentTarifPrice);
+            currentTarif.MenuItems.Add(currentTarifCountData);
+            currentTarif.MenuItems.Add(currentTarifRecomendation);
+
+            newTarif.MenuItems.Add(newTarifInternet);
+            newTarif.MenuItems.Add(newTarifCalling);
+
+            newTarifInternet.MenuItems.Add(new Operation("Tarif", "Super tarif"));
+            newTarifCalling.MenuItems.Add(new Operation("Call", "Free call"));
+
+            currentTarifPrice.MenuItems.Add(new Operation("Price","100"));
+            currentTarifCountData.MenuItems.Add(new Operation("Count Data", "1978"));
+            currentTarifRecomendation.MenuItems.Add(new Operation("Recomendation", "Econom tarif"));
+
+            connectToOperator.MenuItems.Add(new Operation("Operator", "Connect"));
 
 
-            Console.Write("Please enter your number: ");
-            int clientNumber = Convert.ToInt32(Console.ReadLine());
+            //--------------------------------------
+            Stack<Menu> menuStack = new Stack<Menu>();
 
+            Menu prevMenu = null;
+            Menu currentMenu = mainMenu;
 
-            int currentPosition=0;
-
-            if ((currentPosition + clientNumber) == 0)
+            while(true)
             {
-                Environment.Exit(0);
-            }
-            else
-            {
-                if (clientNumber > 0)
+                Console.WriteLine("____________________________");
+                // print info about menu
+                Console.WriteLine(currentMenu.Name);
+
+                foreach(MenuItem item in currentMenu.MenuItems)
                 {
-                    currentPosition = +clientNumber;
+                    Console.WriteLine(item.Name);
+                }
+
+                Console.WriteLine("0: return");
+
+                
+
+                // enter menu item number
+                int menuNumber = Convert.ToInt32(Console.ReadLine());
+
+
+                if (menuNumber == 0)
+                {
+                    currentMenu = prevMenu;
+
+                    if (currentMenu == null)
+                    {
+                        break;
+                    }
+                    
+                }
+
+                MenuItem menuItem;
+                try
+                {
+                    menuItem = currentMenu.MenuItems[menuNumber - 1];
+                }
+                catch (Exception e)
+                {
+                    continue;
+                }
+
+
+                if (menuItem is Operation)
+                {
+                    Operation operation = menuItem as Operation;
+                    Console.WriteLine(operation.Text);
                 }
                 else
                 {
-                    currentPosition = -clientNumber;
+                    prevMenu = currentMenu; 
+                    Menu menu = menuItem as Menu;
+                    
+                    currentMenu = menu;
                 }
             }
 
-            Menu(clientNumber, mainMenu);
-            
-            
 
-
+            Console.WriteLine("THE END");
             Console.ReadLine();
+
+
+
+            //Console.Write("Please enter your number: ");
+            //int clientNumber = Convert.ToInt32(Console.ReadLine());
+
+
+            ////int currentPosition=0;
+
+            //if ((currentPosition + clientNumber) == 0)
+            //{
+            //    Environment.Exit(0);
+            //}
+            //else
+            //{
+            //    if (clientNumber > 0)
+            //    {
+            //        currentPosition = +clientNumber;
+            //    }
+            //    else
+            //    {
+            //        currentPosition = -clientNumber;
+            //    }
+            //}
+
+            //Menu(clientNumber, mainMenu);
+
+
+
+
+            //Console.ReadLine();
         }
 
         public static void Menu(int clientNumber, List<string> Lists)
