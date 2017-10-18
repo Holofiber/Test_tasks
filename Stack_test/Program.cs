@@ -9,7 +9,18 @@ namespace Stack_test
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
+            Stack<int> stack2 = new Stack<int>();
+            for (int i =0; i<10; i++)
+            {
+                
+                    stack2.Push(i);
+                var k = stack2;
+                             
+            
+            }
+
+
             Console.WriteLine("S test");
             StackTest();
             Console.WriteLine("Q test");

@@ -17,14 +17,14 @@ namespace OperatorMenu
         {
             // initialize menus
             Menu mainMenu = new Menu("Main menu");
-            Menu newTarif = new Menu("new Tarif");
-            Menu currentTarif = new Menu(" Current tarif");
-            Menu currentTarifPrice = new Menu("Count data");
-            Menu currentTarifCountData = new Menu("recomendation");
-            Menu currentTarifRecomendation = new Menu("Price your tarif");
-            Menu connectToOperator = new Menu("Connect to operator");
-            Menu newTarifInternet = new Menu("Internet tarifs");
-            Menu newTarifCalling = new Menu("Calling tarif");
+            Menu newTarif = new Menu("2: New Tarif");
+            Menu currentTarif = new Menu("1: Current tarif");
+            Menu currentTarifPrice = new Menu("\t1: Price per monthly");
+            Menu currentTarifCountData = new Menu("\t2: Count avarege your data");
+            Menu currentTarifRecomendation = new Menu("\t3: Recomendation tarif for you");
+            Menu connectToOperator = new Menu("3: Connect to operator");
+            Menu newTarifInternet = new Menu("\t1: Internet tarifs");
+            Menu newTarifCalling = new Menu("\t2: Calling tarif");
 
 
             mainMenu.MenuItems.Add(currentTarif);
@@ -38,26 +38,22 @@ namespace OperatorMenu
             newTarif.MenuItems.Add(newTarifInternet);
             newTarif.MenuItems.Add(newTarifCalling);
 
-            newTarifInternet.MenuItems.Add(new Operation("Tarif", "Super tarif"));
-            newTarifCalling.MenuItems.Add(new Operation("Call", "Free call"));
+            newTarifInternet.MenuItems.Add(new Operation("Tarif", "\t \tSuper tarif"));
+            newTarifCalling.MenuItems.Add(new Operation("Call", "\t\tFree call"));
 
-            currentTarifPrice.MenuItems.Add(new Operation("Price","100"));
-            currentTarifCountData.MenuItems.Add(new Operation("Count Data", "1978"));
-            currentTarifRecomendation.MenuItems.Add(new Operation("Recomendation", "Econom tarif"));
+            currentTarifPrice.MenuItems.Add(new Operation("Price", "\t\t100"));
+            currentTarifCountData.MenuItems.Add(new Operation("Count Data", "\t\t1978"));
+            currentTarifRecomendation.MenuItems.Add(new Operation("Recomendation", "\t\tEconom tarif"));
 
-            connectToOperator.MenuItems.Add(new Operation("Operator", "Connect"));
-
-
-            //--------------------------------------
-            Stack<Menu> menuStack = new Stack<Menu>();
-
-            Menu prevMenu = null;
+            connectToOperator.MenuItems.Add(new Operation("Operator", "\t\tConnect"));
+            
             Menu currentMenu = mainMenu;
+            Stack<Menu> stack = new Stack<Menu>();
 
-            while(true)
+            while (true)
             {
                 Console.WriteLine("____________________________");
-                // print info about menu
+                
                 Console.WriteLine(currentMenu.Name);
 
                 foreach(MenuItem item in currentMenu.MenuItems)
@@ -67,22 +63,20 @@ namespace OperatorMenu
 
                 Console.WriteLine("0: return");
 
-                
-
-                // enter menu item number
                 int menuNumber = Convert.ToInt32(Console.ReadLine());
-
-
+                
                 if (menuNumber == 0)
                 {
-                    currentMenu = prevMenu;
-
-                    if (currentMenu == null)
+                    if ((menuNumber == 0) && (currentMenu == mainMenu))
                     {
-                        break;
-                    }
-                    
+                        Console.WriteLine("Thank You! ");
+                        Thread.Sleep(1000);
+
+                        Environment.Exit(0);
+                    }                   
+                    currentMenu = stack.Pop();                                      
                 }
+                
 
                 MenuItem menuItem;
                 try
@@ -93,7 +87,7 @@ namespace OperatorMenu
                 {
                     continue;
                 }
-
+                           
 
                 if (menuItem is Operation)
                 {
@@ -102,81 +96,20 @@ namespace OperatorMenu
                 }
                 else
                 {
-                    prevMenu = currentMenu; 
+                    //  prevMenu = currentMenu;
+                    stack.Push(currentMenu);
+
                     Menu menu = menuItem as Menu;
                     
                     currentMenu = menu;
+                    
                 }
-            }
-
-
-            Console.WriteLine("THE END");
-            Console.ReadLine();
-
-
-
-            //Console.Write("Please enter your number: ");
-            //int clientNumber = Convert.ToInt32(Console.ReadLine());
-
-
-            ////int currentPosition=0;
-
-            //if ((currentPosition + clientNumber) == 0)
-            //{
-            //    Environment.Exit(0);
-            //}
-            //else
-            //{
-            //    if (clientNumber > 0)
-            //    {
-            //        currentPosition = +clientNumber;
-            //    }
-            //    else
-            //    {
-            //        currentPosition = -clientNumber;
-            //    }
-            //}
-
-            //Menu(clientNumber, mainMenu);
-
-
-
-
-            //Console.ReadLine();
+            }            
         }
 
-        public static void Menu(int clientNumber, List<string> Lists)
-        {
-            switch (clientNumber)
-            {
-                case 1:
-                    Console.WriteLine(Lists[0]);
-                    break;
-                case 2:
-                    Console.WriteLine(Lists[1]);
-                    break;
-                case 3:
-                    Console.WriteLine(Lists[2]);
-                    break;
-                case 4:
-                    Console.WriteLine(Lists[3]);
-                    break;
-                case 5:
-                    Console.WriteLine(Lists[4]);
-                    break;
-                case 6:
-                    Console.WriteLine(Lists[5]);
-                    break;
-                case 0:
-                    Console.WriteLine();
-                    break;
-                default:
-                    Console.WriteLine("Wrong number");
-                    break;
+       
 
-            }
-
-        }
+          
 
      
       
