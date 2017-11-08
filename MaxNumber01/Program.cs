@@ -81,17 +81,36 @@ namespace ConsoleApp3
 
 
 
-            var list = new List<int>() { -2, -5, -3, -1, -7, -3, 0, -5, 9, -3, 1, 0, 0, 1, -5 };
+            //var list = new List<int>() { -2, -5, -3, -1, -7, -3, 0, -5, 9, -3, 1, 0, 0, 1, -5 };
 
-            int maxNumb = list[1];
+            //int maxNumb = list[1];
 
-            for (int i = 0; i < list.Count; i++)
+            //for (int i = 0; i < list.Count; i++)
+            //{
+            //    if (list[i] > maxNumb)
+            //    {
+            //        maxNumb = list[i];
+            //    }
+
+            //}
+
+            var list = new List<int>() { -2 };
+            int maxNumb;
+
+            if (list.Count > 1)
             {
-                if (list[i] > maxNumb)
+                maxNumb = list[1];
+                for (int i = 0; i < list.Count; i++)
                 {
-                    maxNumb = list[i];
+                    if (list[i] > maxNumb)
+                    {
+                        maxNumb = list[i];
+                    }
                 }
-
+            }
+            else
+            {
+                maxNumb = list[0];
             }
 
             Console.WriteLine(maxNumb);
