@@ -115,6 +115,10 @@ namespace Tutorial
                 }
             }
 
+
+             double a = 10;
+            a = a / 3;
+            System.Console.WriteLine(a);
             
 
 
