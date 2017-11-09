@@ -125,6 +125,7 @@ namespace ConsoleApp3
                     maxNumb = t;
                 }
             }
+            list.
 
 
             Console.WriteLine(maxNumb);
